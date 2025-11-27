@@ -40,27 +40,39 @@
     
     <h2>資料庫連線測試</h2>
     <?php
+    // Get and validate database configuration from environment variables
     $host = getenv('DB_HOST') ?: 'db';
     $dbname = getenv('DB_NAME') ?: 'dbproject';
     $user = getenv('DB_USER') ?: 'dbuser';
     $password = getenv('DB_PASSWORD') ?: 'dbpassword';
 
-    try {
-        $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $user, $password);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        
-        // Get MariaDB version
-        $version = $pdo->query('SELECT VERSION()')->fetchColumn();
-        
-        echo '<div class="status success">';
-        echo '<strong>資料庫連線成功!</strong><br>';
-        echo "MariaDB 版本: $version";
-        echo '</div>';
-    } catch (PDOException $e) {
+    // Validate host (only allow alphanumeric, hyphens, underscores, and dots)
+    if (!preg_match('/^[a-zA-Z0-9._-]+$/', $host)) {
         echo '<div class="status error">';
-        echo '<strong>資料庫連線失敗:</strong><br>';
-        echo htmlspecialchars($e->getMessage());
+        echo '<strong>Invalid database host configuration</strong>';
         echo '</div>';
+    } else {
+        try {
+            $dsn = sprintf('mysql:host=%s;dbname=%s;charset=utf8mb4',
+                $host,
+                preg_replace('/[^a-zA-Z0-9_]/', '', $dbname)
+            );
+            $pdo = new PDO($dsn, $user, $password);
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            
+            // Get MariaDB version
+            $version = $pdo->query('SELECT VERSION()')->fetchColumn();
+            
+            echo '<div class="status success">';
+            echo '<strong>資料庫連線成功!</strong><br>';
+            echo 'MariaDB 版本: ' . htmlspecialchars($version);
+            echo '</div>';
+        } catch (PDOException $e) {
+            echo '<div class="status error">';
+            echo '<strong>資料庫連線失敗:</strong><br>';
+            echo htmlspecialchars($e->getMessage());
+            echo '</div>';
+        }
     }
     ?>
     
