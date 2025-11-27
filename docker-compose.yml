@@ -32,6 +32,21 @@ services:
     networks:
       - app-network
 
+  phpmyadmin:
+    image: phpmyadmin:latest
+    ports:
+      - "8081:80"
+    environment:
+      - PMA_HOST=db
+      - PMA_PORT=3306
+      - PMA_USER=${DB_USER:-dbuser}
+      - PMA_PASSWORD=${DB_PASSWORD:-dbpassword}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD:-rootpassword}
+    depends_on:
+      - db
+    networks:
+      - app-network
+
 volumes:
   db-data:
 

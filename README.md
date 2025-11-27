@@ -30,7 +30,26 @@ docker-compose up -d
 ```
 
 3. 訪問應用程式：
-   打開瀏覽器前往 http://localhost:8080
+   - 網站應用程式：http://localhost:8080
+   - phpMyAdmin 資料庫管理介面：http://localhost:8081
+
+## 資料庫管理
+
+本專案整合了 phpMyAdmin，提供直覺的圖形化介面來管理資料庫：
+
+**訪問 phpMyAdmin**：http://localhost:8081
+
+**登入資訊**：
+- 伺服器：`db`
+- 使用者名稱：`dbuser`（或使用 `root` 以完整權限登入）
+- 密碼：`dbpassword`（root 密碼為 `rootpassword`）
+
+**功能**：
+- 瀏覽和編輯資料表
+- 執行 SQL 查詢
+- 匯入/匯出資料庫
+- 管理使用者權限
+- 檢視資料庫結構
 
 ## 開發指令
 
