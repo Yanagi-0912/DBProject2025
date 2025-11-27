@@ -1,0 +1,23 @@
+# Environment files
+.env
+
+# Docker volumes
+db-data/
+
+# IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# PHP dependencies
+vendor/
+composer.lock
+
+# Logs
+*.log
+logs/
