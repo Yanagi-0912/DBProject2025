@@ -1,5 +1,8 @@
 # DBProject2025
+
 資料庫系統課程專題
+
+組員:01257012游承諺，01257007王洪賢，01257002張宸翊
 
 ## 環境需求
 
@@ -15,17 +18,19 @@
 ## 快速開始
 
 1. 複製環境設定檔：
+
 ```bash
 cp .env.example .env
 ```
 
 2. 啟動 Docker 容器：
+
 ```bash
 docker-compose up -d
 ```
 
 3. 訪問應用程式：
-打開瀏覽器前往 http://localhost:8080
+   打開瀏覽器前往 http://localhost:8080
 
 ## 開發指令
 
