@@ -30,7 +30,7 @@ docker-compose up -d
 ```
 
 3. 訪問應用程式：
-   - 網站應用程式：http://localhost:8080
+   - 網站應用程式：http://localhost:8080/public/
    - phpMyAdmin 資料庫管理介面：http://localhost:8081
 
 ## 資料庫管理
@@ -40,11 +40,13 @@ docker-compose up -d
 **訪問 phpMyAdmin**：http://localhost:8081
 
 **登入資訊**：
+
 - 伺服器：`db`
 - 使用者名稱：`dbuser`（或使用 `root` 以完整權限登入）
 - 密碼：`dbpassword`（root 密碼為 `rootpassword`）
 
 **功能**：
+
 - 瀏覽和編輯資料表
 - 執行 SQL 查詢
 - 匯入/匯出資料庫
@@ -81,5 +83,6 @@ docker-compose exec db mysql -u dbuser -p
 ├── docker-compose.yml   # Docker Compose 設定
 ├── .env.example         # 環境變數範例
 ├── src/                 # PHP 應用程式原始碼
+│ ├── public/		 # PHP 應用程式公開程式碼
 └── init/                # 資料庫初始化腳本
 ```
