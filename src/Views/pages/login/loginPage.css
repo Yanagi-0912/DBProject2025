@@ -1,0 +1,159 @@
+/* html 與 body 填滿整個螢幕 */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* 整個頁面背景與置中 */
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* header 在最上方 */
+    min-height: 100vh; /* 滿版高度 */
+    width: 100%;
+    background: linear-gradient(135deg, #b7f6fe, #09b5ff);
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* header：左右分佈 */
+.login-header {
+    width: 100%;
+    max-width: 1400px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 60px;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+    color: #2e0079;
+}
+
+.header-buttons button {
+    height: 6em;
+    width: 8em;
+    margin-left: 12px;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 50%;
+    background-color: #004d40;
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.header-buttons button:hover {
+    background-color: #004d40;
+}
+
+/* 登入表單容器 */
+.login-form {
+    width: 100%;
+    max-width: 400px;
+    background-color: #ffffff;
+    padding: 40px 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 標題 */
+.login-form h2 {
+    margin-bottom: 25px;
+    color: #00796b;
+    font-size: 24px;
+}
+
+/* 輸入區塊 */
+.form-group {
+    width: 100%;
+    margin-bottom: 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-group label {
+    margin-bottom: 6px;
+    font-weight: 500;
+    color: #555;
+}
+
+.form-group input {
+    width: 70%;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+.form-group input:focus {
+    border-color: #00796b;
+    box-shadow: 0 0 5px rgba(0, 121, 107, 0.4);
+    outline: none;
+}
+
+/* 登入/註冊按鈕 */
+.form-actions {
+    display: flex;
+    justify-content: center;
+    width: 80%;
+    margin: 20px auto 0 auto;
+    gap: 15px;
+}
+
+.form-actions button {
+    flex: 1;
+    width: 70%;
+    margin: 20px auto 0 auto;
+    padding: 10px 0;
+    border: none;
+    border-radius: 8px;
+    justify-content: center;
+    background: linear-gradient(45deg, #00796b, #004d40);
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.form-actions button:hover {
+    background: linear-gradient(45deg, #004d40, #00796b);
+}
+
+/* 響應式設計：手機顯示 */
+@media (max-width: 480px) {
+    .login-header {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .header-buttons button {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .login-form {
+        padding: 30px 20px;
+    }
+
+    .form-actions {
+        flex-direction: column;
+    }
+
+    .form-actions button {
+        margin: 5px 0;
+    }
+}
