@@ -30,7 +30,7 @@ docker-compose up -d
 ```
 
 3. 訪問應用程式：
-   - 網站應用程式：http://localhost:8080/public/
+   - 網站應用程式：http://localhost:8080/Views/pages/home/index.php
    - phpMyAdmin 資料庫管理介面：http://localhost:8081
 
 ## 資料庫管理
