@@ -1,0 +1,141 @@
+/* 標題與篩選列 */
+.filter-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    border-bottom: 1px solid #2d2d44;
+    padding-bottom: 15px;
+}
+
+.filter-bar h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #fff;
+    border-left: 4px solid #00f2ea;
+    padding-left: 12px;
+}
+
+.filter-options {
+    font-size: 0.9rem;
+    color: #8f90a6;
+}
+
+/* 遊戲網格容器 */
+.game-grid {
+    display: grid;
+    /* 自動填滿，卡片最小寬度 280px */
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+}
+
+/* 遊戲卡片樣式 */
+.game-card {
+    background-color: #151621;
+    border: 1px solid #2d2d44;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.game-card:hover {
+    transform: translateY(-5px);
+    border-color: #00f2ea;
+    box-shadow: 0 10px 20px rgba(0, 242, 234, 0.15);
+}
+
+/* 圖片區塊 */
+.game-card-img {
+    width: 100%;
+    height: 180px;
+    position: relative;
+    overflow: hidden;
+}
+
+.game-card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.game-card:hover .game-card-img img {
+    transform: scale(1.1);
+}
+
+/* 價格標籤 */
+.game-price {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #00f2ea;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    border: 1px solid #00f2ea;
+}
+
+/* 資訊區塊 */
+.game-card-info {
+    padding: 16px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.game-title {
+    margin: 0 0 10px 0;
+    font-size: 1.2rem;
+    color: #fff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.game-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    font-size: 0.85rem;
+}
+
+.genre-tag {
+    color: #ff0050;
+    background: rgba(255, 0, 80, 0.1);
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+
+.platform-text {
+    color: #8f90a6;
+    max-width: 50%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.game-desc {
+    color: #8f90a6;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* 限制顯示3行 */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* 載入中文字 */
+.loading {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: #666;
+    margin-top: 40px;
+}

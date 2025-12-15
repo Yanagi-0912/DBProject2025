@@ -1,0 +1,204 @@
+.sidebar-right {
+    width: 300px;
+    background-color: var(--esport-bg, #0b0c15);
+    border-left: 1px solid #2d2d44;
+    height: calc(100vh - 72px);
+    position: sticky;
+    top: 72px;
+    overflow-y: auto;
+}
+
+.sidebar-right .sidebar-content {
+    padding: 24px 16px 100px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.card-title {
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0 0 16px 0;
+    display: flex;
+    align-items: center;
+}
+
+.card-title::before {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background-color: var(--esport-secondary, #ff0050);
+    margin-right: 8px;
+    box-shadow: 0 0 5px var(--esport-secondary, #ff0050);
+}
+
+/* 數據卡片 */
+.stats-card {
+    background: linear-gradient(160deg, #151621 0%, #0f1018 100%);
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #2d2d44;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 裝飾線條 */
+.stats-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 60px;
+    height: 2px;
+    background: var(--esport-primary, #00f2ea);
+    box-shadow: 0 0 8px var(--esport-primary, #00f2ea);
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.stat-item {
+    text-align: center;
+    padding: 12px 8px;
+    background-color: rgba(255, 255, 255, 0.03);
+    border-radius: 6px;
+}
+
+.stat-value {
+    color: #ffffff;
+    font-size: 22px;
+    font-weight: 800;
+    margin-bottom: 4px;
+    font-family: 'Segoe UI', sans-serif; /* 數字字體 */
+    text-shadow: 0 0 10px rgba(255,255,255,0.2);
+}
+
+.stat-label {
+    color: #8f90a6;
+    font-size: 11px;
+    text-transform: uppercase;
+}
+
+/* 話題卡片 */
+.topics-card {
+    background-color: #151621;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #2d2d44;
+}
+
+.topics-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.topic-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    background-color: #1f202e;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border-left: 2px solid transparent;
+}
+
+.topic-item:hover {
+    background-color: #252636;
+    border-left-color: var(--esport-primary, #00f2ea);
+    padding-left: 16px; /* 滑動效果 */
+}
+
+.topic-tag {
+    color: #e0e0e0;
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.topic-count {
+    color: #5d5e75;
+    font-size: 11px;
+    background-color: #0b0c15;
+    padding: 2px 6px;
+    border-radius: 3px;
+}
+
+/* 新增貼文按鈕 (懸浮/固定) */
+.create-post-container {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 240px;
+    z-index: 100;
+}
+
+.create-post-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 14px 20px;
+    background: var(--esport-primary, #00f2ea);
+    color: #000000; /* 高對比黑字 */
+    border: none;
+    border-radius: 4px; /* 銳利邊角 */
+    font-size: 16px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(0, 242, 234, 0.4);
+    transition: all 0.3s ease;
+    clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+}
+
+.create-post-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 30px rgba(0, 242, 234, 0.6);
+    background-color: #ffffff;
+}
+
+.create-post-btn svg {
+    stroke-width: 3;
+}
+
+/* 卷軸美化 */
+.sidebar-right::-webkit-scrollbar {
+    width: 4px;
+}
+.sidebar-right::-webkit-scrollbar-track {
+    background: #0b0c15;
+}
+.sidebar-right::-webkit-scrollbar-thumb {
+    background: #2d2d44;
+    border-radius: 4px;
+}
+
+@media (max-width: 1280px) {
+    .sidebar-right { display: none; }
+    
+    .create-post-container {
+        right: 20px;
+        width: auto;
+    }
+    
+    .create-post-btn {
+        width: 56px;
+        height: 56px;
+        padding: 0;
+        border-radius: 50%;
+        clip-path: none; /* 圓形按鈕取消切角 */
+    }
+    
+    .create-post-btn span { display: none; }
+}

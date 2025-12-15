@@ -1,0 +1,180 @@
+.sidebar-left {
+    width: 280px;
+    background-color: var(--esport-bg, #0b0c15);
+    border-right: 1px solid #2d2d44;
+    height: calc(100vh - 72px); /* 扣掉 header 高度 */
+    position: sticky;
+    top: 72px;
+    overflow-y: auto;
+}
+
+.sidebar-content {
+    padding: 24px 16px;
+}
+
+.sidebar-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    padding-left: 8px;
+    border-left: 3px solid var(--esport-primary, #00f2ea); /* 左側光條 */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.sidebar-title svg {
+    color: #ffd700;
+    filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.6));
+}
+
+.game-ranking-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.game-rank-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    background-color: #151621;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.game-rank-item:hover {
+    background-color: #1f202e;
+    border-color: rgba(255, 255, 255, 0.1);
+    transform: translateX(6px);
+}
+
+.game-rank-item::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 3px;
+    background: var(--esport-primary, #00f2ea);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.game-rank-item:hover::after {
+    opacity: 1;
+}
+
+/* 排名數字 */
+.rank-number {
+    min-width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 14px;
+    color: #5d5e75;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.rank-number.top-rank {
+    color: #ffd700;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
+    font-size: 16px;
+}
+
+.game-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+    min-width: 0;
+}
+
+.game-avatar svg {
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+}
+
+.game-name {
+    color: #e0e0e0;
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0 0 2px 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.game-rank-item:hover .game-name {
+    color: #ffffff;
+}
+
+.game-posts {
+    color: #8f90a6;
+    font-size: 11px;
+    margin: 0;
+}
+
+/* 趨勢指標 */
+.trend-indicator {
+    flex-shrink: 0;
+}
+
+.trend-indicator.up {
+    color: #00f2ea;
+    filter: drop-shadow(0 0 4px rgba(0, 242, 234, 0.4));
+}
+
+.trend-indicator.down {
+    color: #ff0050;
+    filter: drop-shadow(0 0 4px rgba(255, 0, 80, 0.4));
+}
+
+.view-all-link {
+    display: block;
+    text-align: center;
+    color: var(--esport-primary, #00f2ea);
+    text-decoration: none;
+    margin-top: 24px;
+    padding: 12px;
+    background: rgba(0, 242, 234, 0.05);
+    border: 1px solid rgba(0, 242, 234, 0.1);
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    letter-spacing: 1px;
+}
+
+.view-all-link:hover {
+    background: rgba(0, 242, 234, 0.15);
+    box-shadow: 0 0 15px rgba(0, 242, 234, 0.1);
+}
+
+/* 卷軸美化 - 電競感 */
+.sidebar-left::-webkit-scrollbar {
+    width: 4px;
+}
+.sidebar-left::-webkit-scrollbar-track {
+    background: #0b0c15;
+}
+.sidebar-left::-webkit-scrollbar-thumb {
+    background: #2d2d44;
+    border-radius: 4px;
+}
+.sidebar-left::-webkit-scrollbar-thumb:hover {
+    background: var(--esport-primary, #00f2ea);
+}
+
+@media (max-width: 1024px) {
+    .sidebar-left { display: none; }
+}

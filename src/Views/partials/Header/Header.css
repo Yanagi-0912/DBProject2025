@@ -1,0 +1,163 @@
+/* 電競風格配色變數建議放在 layout.css，這邊直接應用 */
+:root {
+    --esport-bg: #0b0c15;       /* 極深藍黑 */
+    --esport-card: #151621;     /* 卡片背景 */
+    --esport-primary: #00f2ea;  /* 賽博龐克青 (霓虹感) */
+    --esport-secondary: #ff0050;/* 故障風紅/粉 */
+    --text-main: #ffffff;
+    --text-muted: #8f90a6;
+}
+
+.main-header {
+    background-color: var(--esport-bg, #0b0c15);
+    border-bottom: 2px solid #2d2d44;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 20px rgba(0, 242, 234, 0.1); /* 青色微光暈 */
+    backdrop-filter: blur(10px); /* 玻璃磨砂感 */
+}
+
+.header-container {
+    max-width: 1600px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 24px;
+    gap: 24px;
+}
+
+/* Logo 區域 */
+.header-left .logo-button {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: var(--esport-primary, #00f2ea);
+    font-weight: 800;
+    font-size: 24px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    text-shadow: 0 0 10px rgba(0, 242, 234, 0.3);
+}
+
+.header-left .logo-button:hover {
+    transform: scale(1.05);
+    text-shadow: 0 0 20px rgba(0, 242, 234, 0.6);
+}
+
+.logo-button svg {
+    color: var(--esport-primary, #00f2ea);
+    filter: drop-shadow(0 0 5px rgba(0, 242, 234, 0.5));
+}
+
+/* 搜尋框 */
+.header-center {
+    flex: 1;
+    max-width: 600px;
+}
+
+.search-container {
+    position: relative;
+    width: 100%;
+}
+
+.search-icon {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted, #8f90a6);
+    pointer-events: none;
+    transition: color 0.3s;
+}
+
+.search-input {
+    width: 100%;
+    padding: 12px 16px 12px 48px;
+    background-color: #1f202e;
+    border: 1px solid #2d2d44;
+    border-radius: 4px; /* 電競風格通常比較銳利，圓角較小 */
+    color: #ffffff;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 98% 100%, 0 100%); /* 切角設計 */
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: var(--esport-primary, #00f2ea);
+    background-color: #252636;
+    box-shadow: 0 0 15px rgba(0, 242, 234, 0.15);
+}
+
+.search-input:focus + .search-icon {
+    color: var(--esport-primary, #00f2ea);
+}
+
+.search-input::placeholder {
+    color: #5d5e75;
+}
+
+/* 右側按鈕群 */
+.header-right {
+    display: flex;
+    gap: 16px;
+}
+
+.icon-button {
+    width: 44px;
+    height: 44px;
+    border-radius: 8px; /* 方形圓角 */
+    background-color: #1f202e;
+    border: 1px solid #2d2d44;
+    color: #ffffff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.icon-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+    transform: translateX(-100%);
+    transition: 0.5s;
+}
+
+.icon-button:hover::before {
+    transform: translateX(100%);
+}
+
+.icon-button:hover {
+    background-color: #252636;
+    border-color: var(--esport-primary, #00f2ea);
+    color: var(--esport-primary, #00f2ea);
+    box-shadow: 0 0 10px rgba(0, 242, 234, 0.2);
+    transform: translateY(-2px);
+}
+
+.user-button {
+    border: 1px solid var(--esport-primary, #00f2ea);
+    background-color: rgba(0, 242, 234, 0.05);
+}
+
+/* RWD */
+@media (max-width: 768px) {
+    .header-container {
+        padding: 10px 16px;
+        gap: 12px;
+    }
+    .logo-text { display: none; }
+    .search-input { font-size: 12px; padding: 10px 12px 10px 40px; }
+}

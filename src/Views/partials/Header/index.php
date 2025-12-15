@@ -1,8 +1,9 @@
+<link rel="stylesheet" href="/Views/partials/Header/Header.css">
 <header class="main-header">
     <div class="header-container">
         <!-- Logo/Home Button -->
         <div class="header-left">
-            <a href="/src/Views/pages/home/index.php" class="logo-button">
+            <a href="/Views/pages/home/index.php" class="logo-button">
                 <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
                     <path d="M20 5L5 15V35H15V25H25V35H35V15L20 5Z" fill="currentColor"/>
                 </svg>
@@ -42,147 +43,7 @@
     </div>
 </header>
 
-<style>
-.main-header {
-    background-color: #1a1a2e;
-    border-bottom: 1px solid #2d2d44;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-}
 
-.header-container {
-    max-width: 1400px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 12px 24px;
-    gap: 24px;
-}
-
-.header-left .logo-button {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    text-decoration: none;
-    color: #4ecca3;
-    font-weight: 700;
-    font-size: 20px;
-    transition: transform 0.2s ease;
-}
-
-.header-left .logo-button:hover {
-    transform: scale(1.05);
-}
-
-.logo-button svg {
-    color: #4ecca3;
-}
-
-.logo-text {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.header-center {
-    flex: 1;
-    max-width: 600px;
-}
-
-.search-container {
-    position: relative;
-    width: 100%;
-}
-
-.search-icon {
-    position: absolute;
-    left: 16px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #9b9b9b;
-    pointer-events: none;
-}
-
-.search-input {
-    width: 100%;
-    padding: 12px 16px 12px 48px;
-    background-color: #2d2d44;
-    border: 2px solid transparent;
-    border-radius: 24px;
-    color: #ffffff;
-    font-size: 14px;
-    transition: all 0.3s ease;
-}
-
-.search-input:focus {
-    outline: none;
-    border-color: #4ecca3;
-    background-color: #363653;
-}
-
-.search-input::placeholder {
-    color: #9b9b9b;
-}
-
-.header-right {
-    display: flex;
-    gap: 12px;
-}
-
-.icon-button {
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    background-color: #2d2d44;
-    border: none;
-    color: #ffffff;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-}
-
-.icon-button:hover {
-    background-color: #4ecca3;
-    transform: translateY(-2px);
-}
-
-.icon-button svg {
-    width: 24px;
-    height: 24px;
-}
-
-.user-button {
-    border: 2px solid #4ecca3;
-}
-
-@media (max-width: 768px) {
-    .header-container {
-        padding: 8px 16px;
-        gap: 12px;
-    }
-
-    .logo-text {
-        display: none;
-    }
-
-    .header-center {
-        max-width: none;
-    }
-
-    .search-input {
-        font-size: 12px;
-        padding: 10px 12px 10px 40px;
-    }
-
-    .icon-button {
-        width: 40px;
-        height: 40px;
-    }
-}
-</style>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {

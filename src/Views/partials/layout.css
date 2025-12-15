@@ -1,0 +1,82 @@
+/* src/Views/partials/layout.css */
+
+:root {
+    /* 定義全域變數，確保風格統一 */
+    --esport-bg: #0b0c15;       /* 極深藍黑背景 */
+    --esport-card: #151621;     /* 區塊背景色 */
+    --text-main: #ffffff;       /* 主要文字色 */
+    --gap-size: 24px;           /* 區塊間距 */
+}
+
+/* 1. 全域設定 */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', "Microsoft JhengHei", sans-serif;
+    background-color: var(--esport-bg);
+    color: var(--text-main);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow-x: hidden; /* 防止水平卷軸 */
+}
+
+/* 2. 核心排版容器 (Holy Grail Layout) */
+.main-wrapper {
+    display: grid;
+    /* 定義三欄寬度：
+       [左側邊欄固定280px] [中間自適應] [右側邊欄固定300px] 
+       注意：這裡的寬度要跟你的 sidebar css 寬度匹配 
+    */
+    grid-template-columns: 280px 1fr 300px;
+    gap: var(--gap-size);
+    
+    width: 100%;
+    max-width: 1600px; /* 限制最大寬度以免在大螢幕太寬 */
+    margin: 0 auto;    /* 置中 */
+    padding: 24px;     /* 上下左右留白 */
+    box-sizing: border-box;
+    flex: 1;           /* 撐開高度讓 footer 沉底 */
+}
+
+/* 3. 中間主要內容區塊 */
+.main-content {
+    /* 這裡不設背景色，讓內容直接呈現，或依需求設定 */
+    min-height: 500px;
+    border-radius: 8px;
+    /* 如果希望中間區塊也有卡片背景，可以打開下面這行 */
+    /* background-color: var(--esport-card); padding: 20px; */
+}
+
+/* 4. 側邊欄容器 (微調位置用) */
+.sidebar-area {
+    /* 確保側邊欄不會被內容擠壓 */
+    height: 100%; 
+}
+
+/* 5. 響應式設計 (RWD) */
+
+/* 平板尺寸：隱藏右側邊欄，變成兩欄 */
+@media (max-width: 1280px) {
+    .main-wrapper {
+        grid-template-columns: 280px 1fr;
+    }
+    /* 隱藏右側欄位容器 (內容已經被 sidebar_right.css 隱藏，這裡隱藏容器避免留白) */
+    .sidebar-area:nth-child(3) { 
+        display: none; 
+    }
+}
+
+/* 手機尺寸：全部變成單欄垂直排列 */
+@media (max-width: 1024px) {
+    .main-wrapper {
+        display: flex;
+        flex-direction: column;
+        padding: 16px;
+    }
+    
+    /* 隱藏左側欄位容器 */
+    .sidebar-area:first-child {
+        display: none;
+    }
+}
