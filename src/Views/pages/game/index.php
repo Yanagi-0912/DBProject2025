@@ -57,8 +57,6 @@ $game_title = isset($_GET['game']) ? $_GET['game'] : '';
 
     </div>
 
-    <?php include $path_prefix . 'footer/index.php'; ?>
-
     <script>
         // 2. 將 PHP 變數傳給 JS
         const gameTitle = "<?php echo htmlspecialchars($game_title); ?>";
