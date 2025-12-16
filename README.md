@@ -62,6 +62,10 @@ docker-compose up -d
 # 停止容器
 docker-compose down
 
+# 重置資料
+docker compose down -v
+docker compose up -d --build
+
 # 查看日誌
 docker-compose logs -f
 
