@@ -57,7 +57,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Create post button handler
     document.getElementById('create-post-btn')?.addEventListener('click', function() {
-        window.location.href = '/src/Views/pages/post/postCreating/index.php';
+        window.location.href = '/Views/pages/post/postCreating/index.php';
     });
 
     // Topic items click handlers
