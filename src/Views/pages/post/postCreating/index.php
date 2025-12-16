@@ -63,7 +63,7 @@ session_start();
 					</div>
 					<div class="actions">
 						<button type="submit" class="primary">送出</button>
-						<button type="button" class="secondary" onclick="location.href='../index.php'">返回列表</button>
+					<button type="button" class="secondary" onclick="location.href='/Views/pages/home/index.php'">取消</button>
 					</div>
 					<div id="status" class="status" style="display:none;"></div>
 				</form>

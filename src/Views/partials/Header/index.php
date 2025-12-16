@@ -33,10 +33,19 @@
             </button>
 
             <!-- User Button -->
-            <button class="icon-button user-button" id="user-btn" title="個人檔案">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <button class="icon-button" id="user-btn" title="個人檔案">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" >
                     <circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="2"/>
                     <path d="M6 21C6 17.6863 8.68629 15 12 15C15.3137 15 18 17.6863 18 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button>
+
+            <!-- login Button -->
+            <button class="icon-button"  id="login-btn" title="登入">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M10 17l5-5-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M3 12h12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M21 3h-6v18h6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
             </button>
         </div>
@@ -56,6 +65,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // User button click handler
     document.getElementById('user-btn')?.addEventListener('click', function() {
         window.location.href = '/Views/pages/userProfile/index.php';
+    });
+
+    document.getElementById('login-btn')?.addEventListener('click', function() {
+        window.location.href = '/Views/pages/login/index.php';
     });
 
     // Search functionality

@@ -146,10 +146,35 @@
     box-shadow: 0 0 10px rgba(0, 242, 234, 0.2);
     transform: translateY(-2px);
 }
+.icon-button svg {
+    width: 24px;
+    height: 24px;
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.3));
+}
 
+/* Make user button less "always glowing" — muted default, subtle focus/hover */
 .user-button {
-    border: 1px solid var(--esport-primary, #00f2ea);
-    background-color: rgba(0, 242, 234, 0.05);
+    /* match base icon-button look by default (muted) */
+    border: 1px solid rgba(45,45,68,0.6);
+    background-color: #1f202e;
+    box-shadow: none;
+}
+.user-button svg {
+    /* remove extra drop shadow so it doesn't look brighter than others */
+    filter: none;
+}
+.user-button:hover {
+    border-color: rgba(0,242,234,0.12); 
+    background-color: rgba(0,242,234,0.03);
+    box-shadow: 0 0 6px rgba(0,242,234,0.08);
+    transform: none; /* keep it subtle */
+}
+
+/* Keep keyboard focus visible but subtle for accessibility */
+.icon-button:focus,
+.icon-button:focus-visible {
+    outline: none;
+    box-shadow: 0 0 8px rgba(0,242,234,0.12);
 }
 
 /* RWD */
