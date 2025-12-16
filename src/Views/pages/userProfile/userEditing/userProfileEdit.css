@@ -1,0 +1,166 @@
+/* 整體背景與容器 */
+.userpage-container {
+    width: 100%;
+    min-height: 100vh;
+    background: #f4f4f9;
+    font-family: "Microsoft JhengHei", sans-serif;
+    padding-bottom: 50px;
+}
+
+/* 頂部導覽列 */
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background: #2e2e2e;
+    color: white;
+}
+
+.top-btn {
+    margin-left: 10px;
+    padding: 8px 14px;
+    background: #4e4e4e;
+    border: none;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+}
+.top-btn:hover {
+    background: #6a6a6a;
+}
+
+/* 內容布局 */
+.content {
+    margin-top: 20px;
+    display: flex;               /* 使用 flex 排列中間列 */
+    justify-content: center;     /* 水平置中 */
+    padding: 20px 40px;
+}
+
+/* 中間使用者 + 貼文區 */
+.middle {
+    display: flex;
+    flex-direction: column;      /* 上下排列 */
+    gap: 20px;                   /* 編輯區與文章區間距 */
+    width: 800px;                /* 固定最大寬度 */
+    max-width: 90%;              /* 螢幕小於 800px 自動縮放 */
+}
+
+/* 個人資料編輯容器 */
+.userProfile {
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    width: 100%;                 /* 跟文章區一樣寬 */
+    box-sizing: border-box;
+}
+
+/* 使用者文章區 */
+.userPosts {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    width: 100%;                 /* 跟編輯容器同寬 */
+    box-sizing: border-box;
+}
+
+/* 使用者名稱編輯 */
+.username-edit {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+#usernameText {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#usernameInput {
+    padding: 6px 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+#editUsernameBtn {
+    cursor: pointer;
+    margin-left: 6px;
+}
+
+#saveUsernameBtn,
+#cancelUsernameBtn {
+    background: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 4px 8px;
+    margin-left: 6px;
+    cursor: pointer;
+}
+
+#saveUsernameBtn:hover,
+#cancelUsernameBtn:hover {
+    background: #6bb2ff;
+}
+
+/* 密碼欄位 */
+.userProfile div input[type="password"] {
+    width: 80%;
+    padding: 8px 10px;
+    margin-top: 4px;
+    margin-bottom: 12px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+/* 儲存按鈕 */
+.userProfile button[type="submit"] {
+    background: #4a90e2;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+}
+.userProfile button[type="submit"]:hover {
+    background: #6bb2ff;
+}
+
+/* 文章卡片 */
+.post-card {
+    margin-top: 15px;
+    padding: 15px;
+    background: #fafafa;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.post-card:hover {
+    background: #f0f0f0;
+}
+
+.post-card h3 {
+    margin: 0 0 6px 0;
+}
+
+.post-card p {
+    margin: 4px 0;
+}
+
+.post-card img {
+    width: 100%;
+    height: 200px;
+    background: #ccc;
+    border-radius: 8px;
+}
+
+.tags {
+    color: #666;
+    font-size: 14px;
+}
