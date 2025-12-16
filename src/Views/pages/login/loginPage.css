@@ -1,9 +1,23 @@
-/* html 與 body 填滿整個螢幕 */
+/* 定義變數以保持風格一致 (若已引入 layout.css 可共用，但寫在這裡確保獨立運作) */
+:root {
+    --esport-bg: #0b0c15;       /* 極深藍黑 */
+    --esport-card: #151621;     /* 卡片背景 */
+    --esport-input: #1f202e;    /* 輸入框背景 */
+    --esport-primary: #00f2ea;  /* 賽博龐克青 (霓虹感) */
+    --esport-secondary: #ff0050;/* 故障風紅/粉 */
+    --text-main: #ffffff;
+    --text-muted: #8f90a6;
+    --border-color: #2d2d44;
+}
+
+/* html 與 body */
 html, body {
     height: 100%;
     margin: 0;
     padding: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--esport-bg); /* 改為深色背景 */
+    color: var(--text-main);
 }
 
 /* 整個頁面背景與置中 */
@@ -11,149 +25,183 @@ html, body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start; /* header 在最上方 */
-    min-height: 100vh; /* 滿版高度 */
+    justify-content: center; /* 讓登入框垂直置中 */
+    min-height: 100vh;
     width: 100%;
-    background: linear-gradient(135deg, #b7f6fe, #09b5ff);
+    /* 移除原本的淺藍色漸層，改為電競風深色背景 */
+    background: radial-gradient(circle at center, #1b1c29 0%, #0b0c15 100%);
     padding: 20px;
     box-sizing: border-box;
 }
 
-/* header：左右分佈 */
+/* Header 區域 */
 .login-header {
     width: 100%;
     max-width: 1400px;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between; /* 調整為兩側分佈 */
     align-items: center;
-    margin-bottom: 60px;
+    position: absolute; /* 讓 Header 固定在上方，不影響中間表單 */
+    top: 0;
+    left: 0;
+    padding: 20px 40px;
+    box-sizing: border-box;
 }
 
 .logo {
-    font-size: 28px;
-    font-weight: bold;
-    color: #2e0079;
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--esport-primary); /* 青色 Logo */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px rgba(0, 242, 234, 0.6); /* 霓虹發光效果 */
+    text-decoration: none;
 }
 
-.header-buttons button {
-    height: 6em;
-    width: 8em;
-    margin-left: 12px;
-    padding: 8px 16px;
-    border: none;
-    border-radius: 50%;
-    background-color: #004d40;
-    color: white;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.header-buttons button:hover {
-    background-color: #004d40;
-}
-
-/* 登入表單容器 */
-.login-form {
+/* 登入/註冊表單容器 (這部分雖然你的 CSS 沒寫特定 class，但我針對 form 標籤做美化) */
+form {
+    background-color: var(--esport-card);
+    padding: 40px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5), 0 0 5px rgba(0, 242, 234, 0.2); /* 雙層陰影 */
     width: 100%;
     max-width: 400px;
-    background-color: #ffffff;
-    padding: 40px 30px;
-    border-radius: 12px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
+    overflow: hidden;
 }
 
-/* 標題 */
-.login-form h2 {
-    margin-bottom: 25px;
-    color: #00796b;
+/* 增加頂部亮條裝飾 */
+form::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--esport-secondary), var(--esport-primary));
+}
+
+/* 表單標題 (如果有 h2 的話) */
+form h2 {
+    color: #fff;
+    margin-bottom: 30px;
     font-size: 24px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-/* 輸入區塊 */
+/* 輸入框群組 */
 .form-group {
     width: 100%;
-    margin-bottom: 18px;
+    margin-bottom: 20px;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start; /* 標籤靠左 */
 }
 
 .form-group label {
-    margin-bottom: 6px;
-    font-weight: 500;
-    color: #555;
+    margin-bottom: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--esport-primary); /* 標籤改為青色 */
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .form-group input {
-    width: 70%;
-    padding: 10px 12px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
+    width: 100%;
+    padding: 12px 15px;
+    border-radius: 4px; /* 電競風圓角較小 */
+    border: 1px solid var(--border-color);
+    background-color: var(--esport-input); /* 深色輸入框 */
+    color: #fff; /* 白字 */
     font-size: 16px;
     transition: all 0.3s ease;
     box-sizing: border-box;
 }
 
 .form-group input:focus {
-    border-color: #00796b;
-    box-shadow: 0 0 5px rgba(0, 121, 107, 0.4);
+    border-color: var(--esport-primary);
+    background-color: #252636;
+    box-shadow: 0 0 10px rgba(0, 242, 234, 0.3); /* 聚焦時發光 */
     outline: none;
 }
 
-/* 登入/註冊按鈕 */
+/* 佔位符文字顏色 */
+.form-group input::placeholder {
+    color: #5d5e75;
+}
+
+/* 按鈕區域 */
 .form-actions {
     display: flex;
     justify-content: center;
-    width: 80%;
-    margin: 20px auto 0 auto;
+    width: 100%;
+    margin-top: 10px;
     gap: 15px;
 }
 
-.form-actions button {
-    flex: 1;
-    width: 70%;
-    margin: 20px auto 0 auto;
-    padding: 10px 0;
+/* 通用按鈕樣式 */
+button {
+    width: 100%;
+    padding: 12px 0;
     border: none;
-    border-radius: 8px;
-    justify-content: center;
-    background: linear-gradient(45deg, #00796b, #004d40);
-    color: white;
+    border-radius: 4px;
     font-size: 16px;
-    font-weight: 500;
+    font-weight: 700;
     cursor: pointer;
     transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background-color: var(--esport-primary);
+    color: #0b0c15; /* 黑字對比最強 */
+    box-shadow: 0 0 15px rgba(0, 242, 234, 0.2);
 }
 
-.form-actions button:hover {
-    background: linear-gradient(45deg, #004d40, #00796b);
+button:hover {
+    background-color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 0 25px rgba(0, 242, 234, 0.5);
 }
 
-/* 響應式設計：手機顯示 */
-@media (max-width: 480px) {
+/* 如果有第二個按鈕 (例如返回首頁)，可以給它不同的樣式 */
+.header-buttons button, 
+button[type="button"] { /* 假設次要按鈕是 type="button" */
+    background-color: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-muted);
+    box-shadow: none;
+}
+
+.header-buttons button:hover,
+button[type="button"]:hover {
+    border-color: var(--esport-primary);
+    color: var(--esport-primary);
+    background-color: rgba(0, 242, 234, 0.05);
+}
+
+/* 錯誤訊息 (若有) */
+.error-message {
+    color: var(--esport-secondary);
+    font-size: 14px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+/* RWD 手機版調整 */
+@media (max-width: 768px) {
     .login-header {
-        flex-direction: column;
-        gap: 15px;
+        justify-content: center;
     }
-    
-    .header-buttons button {
-        width: 100%;
-        margin-left: 0;
+    .header-buttons {
+        display: none; /* 手機版可能隱藏頂部按鈕 */
     }
-
-    .login-form {
+    form {
         padding: 30px 20px;
-    }
-
-    .form-actions {
-        flex-direction: column;
-    }
-
-    .form-actions button {
-        margin: 5px 0;
+        width: 90%;
     }
 }
