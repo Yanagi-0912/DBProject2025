@@ -89,7 +89,6 @@ $postId = $_GET['id'] ?? '';
                 </div>
                 <div class="post-body">${escapeHtml(p.content)}</div>
                 <div class="actions">
-                    <a class="btn-text" href="../index.php">返回列表</a>
                     <a class="btn-text" href="../postEditing/index.php?id=${p.post_id}">編輯貼文</a>
                     <a class="btn-text" href="../../game/index.php?game=${encodeURIComponent(p.game_title)}">查看遊戲頁</a>
                 </div>
