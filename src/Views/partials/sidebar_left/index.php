@@ -136,7 +136,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const gameName = this.querySelector('.game-name').textContent;
             // TODO: Navigate to game page or filter posts by game
             console.log('Clicked on game:', gameName);
-            window.location.href = `/src/Views/pages/game/index.php?game=${encodeURIComponent(gameName)}`;
+            window.location.href = `/Views/pages/game/index.php?game=${encodeURIComponent(gameName)}`;
         });
     });
 

@@ -57,14 +57,16 @@ CREATE TABLE IF NOT EXISTS posts (
 -- 使用者（密碼以應用程式註冊 API 產生雜湊，這裡放示意字串）
 INSERT INTO users (username, account, password, follower_count)
 VALUES
-    ('capoo', '01257002', 'hashed_pw_001', 0)
+    ('capoo', '01257002', '123456', 0)
 ON DUPLICATE KEY UPDATE username = VALUES(username);
 
 -- 遊戲
 INSERT INTO games (game_title, description, platform, genre, price, image) VALUES
-    ('manosaba', '視覺小說 推理遊戲 galgame', 'PC', 'Visual Novel', 398.00, 'images/manosaba.jpg'),
-    ('Honkai: Star Rail', '回合制 劇情 Turn-based RPG', 'PC / PS5 / Mobile', 'Turn-based RPG', 0.00, 'images/honkai_star_rail.jpg'),
-    ('Elden Ring', '開放世界動作 RPG', 'PC / PS5 / Xbox', 'Action RPG', 1790.00, 'images/eldenring.jpg');
+    ('魔法少女ノ魔女裁判', '視覺小說 推理遊戲 galgame', 'PC', 'Visual Novel', 398.00, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIQJKFky9TgNt0Ip9hctDNqJXfqach0ZZmQA&s'),
+    ('Honkai: Star Rail', '回合制 劇情 Turn-based RPG', 'PC / PS5 / Mobile', 'Turn-based RPG', 0.00, 'https://upload.wikimedia.org/wikipedia/zh/1/11/Honkai%EF%BC%9AStar_Rail%E5%B4%A9%E5%A3%9E%EF%BC%9A%E6%98%9F%E7%A9%B9%E9%90%B5%E9%81%93.png'),
+    ('Elden Ring', '開放世界動作 RPG', 'PC / PS5 / Xbox', 'Action RPG', 1790.00, 'https://upload.wikimedia.org/wikipedia/zh/6/62/Elden_Ring_cover.png'),
+    ('Genshin Impact', '開放世界動作 RPG', 'Android/iOS/Microsoft Windows/PlayStation 4[a]/PlayStation 5/Xbox Series X/S/HarmonyOS NEXT', 'Action RPG', 0.00, 'https://upload.wikimedia.org/wikipedia/zh/f/fc/%E5%8E%9F%E7%A5%9E_%E5%9C%8B%E9%9A%9B%E7%89%88.jpeg');
+
 
 -- 貼文（範例：user 1 評論 game 1）
 INSERT INTO posts (user_id, game_id, title, content, rating, image_url, post_date)

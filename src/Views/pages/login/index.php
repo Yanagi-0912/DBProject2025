@@ -62,7 +62,7 @@
             console.log(result);
             if (result.status === 'success') {
                 alert('登入成功');
-                window.location.href = '../userProfile/index.php'; // 登入成功後跳轉到用戶頁面
+                window.location.href = '../home/index.php'; // 登入成功後跳轉到用戶頁面
             } 
             else {
                 alert('登入失敗: ' + result.message);
