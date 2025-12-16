@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // User button click handler
     document.getElementById('user-btn')?.addEventListener('click', function() {
-        window.location.href = '/Views/pages/login/index.php';
+        window.location.href = '/Views/pages/userProfile/index.php';
     });
 
     // Search functionality

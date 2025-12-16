@@ -93,6 +93,7 @@ session_start();
 					<div class="meta">發文者：${escapeHtml(p.username)} · ${rating} · ${date}</div>
 					<div class="content-preview">${escapeHtml(p.content)}</div>
 					<div class="card-actions">
+						<a class="text-btn" href="detail/index.php?id=${p.post_id}">查看</a>
 						<button class="text-btn" onclick="location.href='postEditing/index.php?id=${p.post_id}'">編輯</button>
 					</div>
 				`;

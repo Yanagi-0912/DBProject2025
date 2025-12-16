@@ -15,6 +15,16 @@ $game_title = isset($_GET['game']) ? $_GET['game'] : '';
     <title><?php echo htmlspecialchars($game_title); ?> - 遊戲詳情</title>
     <link rel="stylesheet" href="/Views/partials/layout.css">
     <link rel="stylesheet" href="game.css">
+    <style>
+        /* 針對貼文卡片補充樣式 */
+        .review-item { display: flex; gap: 12px; background: #151621; border: 1px solid #222438; border-radius: 10px; padding: 12px; margin-bottom: 12px; }
+        .review-cover { width: 120px; flex-shrink: 0; }
+        .review-cover img { width: 100%; height: 100%; object-fit: cover; border-radius: 8px; background: #0b0c15; min-height: 90px; }
+        .review-body { flex: 1; display: flex; flex-direction: column; gap: 6px; }
+        .review-actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 4px; }
+        .btn-text { background: transparent; color: #e5e7ff; border: 1px solid #3a3d5c; padding: 6px 10px; border-radius: 6px; cursor: pointer; }
+        .btn-text:hover { border-color: #6c63ff; color: #fff; }
+    </style>
 </head>
 <body>
 
@@ -32,13 +42,12 @@ $game_title = isset($_GET['game']) ? $_GET['game'] : '';
             </div>
 
             <div class="comments-section">
-                <h3>評論列表</h3>
+                <h3>貼文列表</h3>
                 <?php if(isset($_SESSION['user_id'])): ?>
                     <button class="btn-comment" onclick="alert('請使用右側邊欄的新增貼文功能')">我要評論</button>
                 <?php endif; ?>
 
-                <div id="reviewList">
-                    </div>
+                <div id="postList"></div>
             </div>
         </main>
 
@@ -71,13 +80,26 @@ $game_title = isset($_GET['game']) ? $_GET['game'] : '';
                 
                 if (data.status === 'success') {
                     renderGame(data.game);
-                    renderReviews(data.reviews);
+                    loadGamePosts(data.game.game_id);
                 } else {
                     document.getElementById('gameDetailArea').innerHTML = `<p>${data.message}</p>`;
                 }
             } catch (error) {
                 console.error(error);
                 document.getElementById('gameDetailArea').innerHTML = '<p>載入失敗</p>';
+            }
+        }
+
+        async function loadGamePosts(gameId) {
+            const list = document.getElementById('postList');
+            list.innerHTML = '<p class="no-data">載入貼文中...</p>';
+            try {
+                const res = await fetch(`../../../api/getPostsByGameAPI.php?game_id=${gameId}`);
+                const data = await res.json();
+                if (data.status !== 'success') throw new Error(data.message || '載入失敗');
+                renderPosts(data.data);
+            } catch (err) {
+                list.innerHTML = `<p class="no-data">${err.message}</p>`;
             }
         }
 
@@ -105,31 +127,46 @@ $game_title = isset($_GET['game']) ? $_GET['game'] : '';
             document.getElementById('gameDetailArea').innerHTML = html;
         }
 
-        function renderReviews(reviews) {
-            const list = document.getElementById('reviewList');
+        function renderPosts(posts) {
+            const list = document.getElementById('postList');
             list.innerHTML = '';
 
-            if (reviews.length === 0) {
-                list.innerHTML = '<p class="no-data">目前尚無評論，快來搶頭香！</p>';
+            if (!posts.length) {
+                list.innerHTML = '<p class="no-data">目前尚無貼文，快來搶頭香！</p>';
                 return;
             }
 
-            reviews.forEach(review => {
+            posts.forEach(post => {
+                const rating = post.rating ? `${post.rating} 分` : '尚未評分';
+                const image = post.image_url ? post.image_url : 'https://placehold.co/300x200?text=No+Image';
                 const item = `
                     <div class="review-item">
-                        <div class="review-title">
-                            <strong>${review.title}</strong>
-                            <span class="rating-badge">${review.rating} 分</span>
+                        <div class="review-cover">
+                            <img src="${image}" alt="post image">
                         </div>
-                        <p class="review-content">${review.content}</p>
-                        <div class="review-footer">
-                            <span>作者: ${review.username}</span>
-                            <span>時間: ${review.post_date}</span>
+                        <div class="review-body">
+                            <div class="review-title">
+                                <strong>${escapeHtml(post.title)}</strong>
+                                <span class="rating-badge">${rating}</span>
+                            </div>
+                            <p class="review-content">${escapeHtml(post.content)}</p>
+                            <div class="review-footer">
+                                <span>作者: ${escapeHtml(post.username)}</span>
+                                <span>時間: ${post.post_date}</span>
+                            </div>
+                            <div class="review-actions">
+                                <a class="btn-text" href="../post/detail/index.php?id=${post.post_id}">查看貼文</a>
+                                <a class="btn-text" href="../post/postEditing/index.php?id=${post.post_id}">編輯貼文</a>
+                            </div>
                         </div>
                     </div>
                 `;
                 list.innerHTML += item;
             });
+        }
+
+        function escapeHtml(str) {
+            return str ? str.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\'':'&#39;'}[c])) : '';
         }
     </script>
 </body>

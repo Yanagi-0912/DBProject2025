@@ -64,7 +64,7 @@ $account = $_SESSION["account"];
             <div class="userProfile">
                 <h2><?php echo htmlspecialchars($username); ?></h2>
                 <p><?php echo htmlspecialchars($account); ?></p>
-                <button class="editUserInfo-btn" onclick="alert('編輯個人資料功能尚未實作')">編輯個人資料</button>
+                <button class="editUserInfo-btn" onclick="window.location.href='userEditing/index.php'">編輯個人資料</button>
             </div>
 
             <div class="userPosts">
