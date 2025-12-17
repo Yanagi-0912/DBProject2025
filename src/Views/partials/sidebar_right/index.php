@@ -1,44 +1,6 @@
 <link rel="stylesheet" href="/Views/partials/sidebar_right/sidebar_right.css">
 <aside class="sidebar-right">
     <div class="sidebar-content">
-        <!-- Quick Stats Card -->
-        <div class="stats-card">
-            <h3 class="card-title">社群動態</h3>
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <div class="stat-value">2.5K</div>
-                    <div class="stat-label">今日貼文</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-value">12.8K</div>
-                    <div class="stat-label">線上用戶</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Trending Topics -->
-        <div class="topics-card">
-            <h3 class="card-title">熱門話題</h3>
-            <div class="topics-list">
-                <a href="#" class="topic-item">
-                    <span class="topic-tag">#新賽季</span>
-                    <span class="topic-count">1.2K</span>
-                </a>
-                <a href="#" class="topic-item">
-                    <span class="topic-tag">#電競賽事</span>
-                    <span class="topic-count">856</span>
-                </a>
-                <a href="#" class="topic-item">
-                    <span class="topic-tag">#攻略分享</span>
-                    <span class="topic-count">734</span>
-                </a>
-                <a href="#" class="topic-item">
-                    <span class="topic-tag">#精彩時刻</span>
-                    <span class="topic-count">612</span>
-                </a>
-            </div>
-        </div>
-
         <!-- Create Post Button - Fixed at bottom -->
         <div class="create-post-container">
             <button class="create-post-btn" id="create-post-btn">
