@@ -15,40 +15,161 @@ $account = $_SESSION["account"];
 <head>
     <meta charset="UTF-8" />
     <title>Userprofile Editing Page</title>
-    <link rel="stylesheet" href="userProfileEdit.css">
+        <link rel="stylesheet" href="/Views/partials/layout.css">
+    <style>
+        .username-edit {
+            display: flex;
+            align-items: center;
+            gap: 8px; /* 名稱和鉛筆間距 */
+            margin-bottom: 16px;
+        }
+
+        .username-edit h1 {
+            font-weight: 600;
+            font-size: 18px;
+            color: #00f2ea;
+        }
+
+        #editUsernameBtn {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            fill: #00f2ea; /* 讓鉛筆圖標在深色背景下可見 */
+            transition: transform 0.2s;
+        }
+
+        #editUsernameBtn:hover {
+            transform: scale(1.2);
+        }
+        #saveChangesBtn {
+            background-color: #00f2ea;
+            color: #0b0c15;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(0, 242, 234, 0.5);
+        }
+        /* 顯示/隱藏 input 時的樣式 */
+        #usernameInput {
+            flex: 1;
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px solid #2d2d44;
+            background-color: #1f202e;
+            color: #ffffff;
+            width: 50%;
+        }
+
+        /* 儲存/取消按鈕 */
+        #saveUsernameBtn,
+        #cancelUsernameBtn {
+            background-color: #00f2ea;
+            border: none;
+            border-radius: 6px;
+            color: #0b0c15;
+            padding: 4px 8px;
+            cursor: pointer;
+            margin-left: 4px;
+            font-weight: bold;
+        }
+
+        #saveUsernameBtn:hover,
+        #cancelUsernameBtn:hover {
+            background-color: #00d5cc;
+        }
+
+        /* 密碼欄位加強顯眼 */
+        .userProfile input[type="password"] {
+            background-color: #ffffffa9;
+            color: #ffffff;
+            border: 1px solid #2d2d44;
+            border-radius: 6px;
+            padding: 8px 12px;
+            margin-bottom: 16px;
+            width: 50%;
+        }
+                /* 文章卡片風格 */
+        .post-card {
+            background-color: #151621;
+            border: 2px solid #ff0050; /* 紅色霓虹邊框 */
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #ffffff;
+            box-shadow: 0 4px 12px rgba(255, 0, 80, 0.2);
+        }
+
+        .post-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 0, 80, 0.4);
+        }
+
+        .post-card h3 {
+            font-size: 20px;
+            color: #ff0050;
+            margin-bottom: 8px;
+        }
+
+        .post-card .tags {
+            font-size: 14px;
+            color: #8f90a6;
+            margin-bottom: 12px;
+        }
+
+        .post-card p {
+            font-size: 16px;
+            line-height: 1.5;
+            color: #ffffff;
+        }
+
+        .post-card img {
+            margin-top: 12px;
+            max-width: 100%;
+            border-radius: 8px;
+            display: block;
+        }
+    </style>
 </head>
 
 <body>
 
 <div class="userpage-container">
+    <?php include '../../../partials/Header/index.php'; ?>   
 
-    <!-- 頂部導覽列 -->
-    <header class="topbar">
-        <div class="topbar-left">
-            <button class="top-btn" onclick="window.location.href='../../home/index.php'">首頁圖標</button>
+
+    <!-- Holy Grail Layout -->
+    <div class="main-wrapper">
+
+        <!-- 左側 sidebar -->
+        <div class="sidebar-area">
+            <?php include '../../../partials/sidebar_left/index.php'; ?>
         </div>
 
-        <div class="topbar-right">
-            <button class="top-btn" onclick="logout()">登出</button>
-            <button class="top-btn" onclick="window.location.href='../../userProfile/index.php'">個人資料</button>
-        </div>
-    </header>
+        <!-- 中間 main-content -->
+        <div class="main-content middle">
 
-    <div class="content">
-        <!-- 中間：個人資料 + 貼文 -->
-        <div class="middle">
             <!-- 編輯容器 -->
             <div class="userProfile">
                 <form method="POST" id="editUserForm">
                     <div class="username-edit">
-                        <span id="usernameText"><?php echo htmlspecialchars($username); ?></span>
+                        <h1 id="usernameText"><?php echo htmlspecialchars($username); ?></h1>
                         <input type="text" id="usernameInput" value="<?php echo htmlspecialchars($username); ?>" style="display:none;">
-                        <svg id="editUsernameBtn" ...>...</svg>
+                        
+                        <svg id="editUsernameBtn" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
+                        </svg>
+
                         <button id="saveUsernameBtn" style="display:none;">✔</button>
                         <button id="cancelUsernameBtn" style="display:none;">✖</button>
                     </div>
 
                     <p><?php echo htmlspecialchars($account); ?></p>
+
                     <div>
                         <label>新密碼</label><br>
                         <input type="password" name="password" id="password">
@@ -57,7 +178,7 @@ $account = $_SESSION["account"];
                         <label>確認新密碼</label><br>
                         <input type="password" name="password_confirm" id="password_confirm">
                     </div>
-                    <button type="submit">儲存修改</button>
+                    <button type="submit" id="saveChangesBtn">儲存修改</button>
                 </form>
             </div>
 
@@ -71,9 +192,17 @@ $account = $_SESSION["account"];
                     <img alt="post">
                 </div>
             </div>
-        </div>
-    </div>
 
+        </div>
+
+        <!-- 右側 sidebar -->
+        <div class="sidebar-area">
+            <?php include '../../../partials/sidebar_right/index.php'; ?>
+        </div>
+
+    </div> <!-- main-wrapper -->
+
+</div> <!-- userpage-container -->
 </div>
 <script>
 const usernameText = document.getElementById('usernameText');

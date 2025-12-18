@@ -58,6 +58,9 @@ CREATE TABLE IF NOT EXISTS posts (
 INSERT INTO users (username, account, password, follower_count)
 VALUES
     ('capoo', '01257002', '123456', 0)
+    INSERT INTO users (username, account, password, follower_count)
+VALUES
+    ('thugcreeper', '12345@gmail', 'aabbcc', 0)
 ON DUPLICATE KEY UPDATE username = VALUES(username);
 
 -- 遊戲
