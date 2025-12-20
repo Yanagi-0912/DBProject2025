@@ -1,0 +1,23 @@
+/* 文章卡片風格 */
+        .post-card {background-color: #151621;border: 2px solid #ff0050; /* 紅色霓虹邊框 */ border-radius: 12px;padding: 16px;margin-bottom: 16px;cursor: pointer;transition: all 0.3s ease;color: #ffffff;box-shadow: 0 4px 12px rgba(255, 0, 80, 0.2);}
+        .post-card:hover {transform: translateY(-3px);box-shadow: 0 6px 20px rgba(255, 0, 80, 0.4);}
+        .post-card h3 {font-size: 20px;color: #ff0050; margin-bottom: 8px;}
+        .post-card .tags {font-size: 14px;color: #8f90a6;margin-bottom: 12px;}
+        .post-card p {font-size: 16px; line-height: 1.5;color: #ffffff;}
+        .post-card img {margin-top: 12px;max-width: 100%; border-radius: 8px;display: block;}
+        .post-container { background: #151621; border: 1px solid #222438; border-radius: 12px; padding: 20px; max-width: 900px; }
+        .post-header { display: flex; gap: 16px; margin-bottom: 12px; }
+        .cover { width: 220px; flex-shrink: 0; }
+        .cover img { width: 100%; height: 100%; object-fit: cover; border-radius: 10px; background: #0b0c15; min-height: 160px; }
+        .meta { display: flex; flex-direction: column; gap: 6px; }
+        .badge { background: #222438; padding: 6px 10px; border-radius: 8px; display: inline-block; color: #cfd2ff; }
+        .rating { font-size: 20px; color: #ffd166; }
+        .post-body { margin-top: 12px; line-height: 1.7; color: #e7e8f5; white-space: pre-wrap; }
+        .info-line { color: #c7c7d4; font-size: 14px; }
+        .actions { margin-top: 16px; display: flex; gap: 10px; }
+        .btn-text { background: transparent; color: #e5e7ff; border: 1px solid #3a3d5c; padding: 8px 12px; border-radius: 8px; cursor: pointer; text-decoration: none; }
+        .btn-text:hover { border-color: #6c63ff; color: #fff; }
+        .post-body-wrapper {display: flex;gap: 16px; /* 圖片與文字間距 */align-items: flex-start;margin-top: 12px;}
+        .post-body-wrapper .cover {width: 220px;flex-shrink: 0;}
+        .post-body-wrapper .cover img {width: 100%;height: 100%;object-fit: cover;border-radius: 10px;background: #0b0c15;min-height: 160px;}
+        .post-body-wrapper .post-content {flex: 1;font-size: 15px;       /* 調整文章文字大小 */line-height: 1.6;color: #e7e8f5;}
