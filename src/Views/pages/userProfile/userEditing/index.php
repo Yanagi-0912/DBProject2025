@@ -16,6 +16,7 @@ $account = $_SESSION["account"];
     <meta charset="UTF-8" />
     <title>Userprofile Editing Page</title>
         <link rel="stylesheet" href="/Views/partials/layout.css">
+    <link rel="stylesheet" href="../userPosts.css">
     <style>
         .username-edit {
             display: flex;
@@ -184,13 +185,7 @@ $account = $_SESSION["account"];
 
             <!-- 文章容器 -->
             <div class="userPosts">
-                <h2>我的文章</h2>
-                <div class="post-card" onclick="alert('文章詳細頁面尚未實作')">
-                    <h3>文章標題</h3>
-                    <p class="tags">#tag1 #tag2</p>
-                    <p>文章內容...</p>
-                    <img alt="post">
-                </div>
+                <?php include '../userPosts.php'; ?>
             </div>
 
         </div>
@@ -205,6 +200,7 @@ $account = $_SESSION["account"];
 </div> <!-- userpage-container -->
 </div>
 <script>
+document.addEventListener('DOMContentLoaded', getUserPost);
 const usernameText = document.getElementById('usernameText');
 const usernameInput = document.getElementById('usernameInput');
 const editBtn = document.getElementById('editUsernameBtn');
@@ -282,7 +278,7 @@ function updatePersonProfile() {
     .then(result => {
         if (result.status === 'success') {
             alert('修改個人資料成功');
-
+            window.location.href = '../index.php';
             if (username) {
                 usernameText.innerText = username;
                 cancelBtn.click();
