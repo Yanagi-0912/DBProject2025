@@ -101,3 +101,39 @@ END
 $$
 DELIMITER ;
 
+--建立trigger: 每當有新貼文插入時，更新使用者的 follower_count，
+DELIMITER $$
+CREATE TRIGGER updateFollowerCount
+AFTER INSERT ON posts
+
+FOR EACH ROW
+BEGIN
+    UPDATE users
+    SET follower_count = follower_count + 
+        addRandomFollowers(1, (SELECT COUNT(*) FROM posts WHERE user_id = NEW.user_id))
+    WHERE id = NEW.user_id;
+END
+$$
+DELIMITER ;
+
+--建立function:隨機增加一定區間的follower
+DELIMITER $$
+CREATE FUNCTION addRandomFollowers(minIncrease INT,  post_count INT)
+RETURNS INT
+DETERMINISTIC
+BEGIN
+    DECLARE randomIncrease INT;
+    DECLARE maxIncrease INT;
+
+    IF post_count BETWEEN 1 AND 10 THEN
+        SET maxIncrease = 5;
+    ELSEIF post_count BETWEEN 11 AND 50 THEN
+        SET maxIncrease = 10;
+    ELSE
+        SET maxIncrease = 7;
+    END IF;
+
+    SET randomIncrease = FLOOR(RAND() * (maxIncrease - minIncrease + 1)) + minIncrease;
+    RETURN randomIncrease;
+END$$
+DELIMITER ;

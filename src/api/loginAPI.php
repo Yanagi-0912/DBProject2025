@@ -34,6 +34,7 @@ if(!$user || !password_verify($password, $user["password"])){//password_verifyæ˜
 $_SESSION["user_id"] = $user["id"];
 $_SESSION["username"] = $user["username"];
 $_SESSION["account"] = $user["account"];
+$_SESSION["follower_count"] = $user["follower_count"] ?? 0;
 
 http_response_code(200);
 echo json_encode([
@@ -42,7 +43,8 @@ echo json_encode([
     "user" => [
         "id" => $user["id"],
         "username" => $user["username"],
-        "account" => $user["account"]
+        "account" => $user["account"],
+        "follower_count" => $user["follower_count"] ?? 0
     ]
 ]);
 exit();

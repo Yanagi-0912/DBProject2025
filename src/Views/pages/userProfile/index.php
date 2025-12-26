@@ -8,6 +8,7 @@ if (!isset($_SESSION["user_id"])) {
 $user_id = $_SESSION["user_id"];
 $username = $_SESSION["username"];
 $account = $_SESSION["account"];
+$followers = $_SESSION["follower_count"] ?? 0;
 ?>
 
 <!DOCTYPE html>
@@ -41,7 +42,8 @@ $account = $_SESSION["account"];
             <div class="main-content middle"> <!-- 中間使用者資料 + 貼文 -->
                 <div class="userProfile">
                     <h2><?php echo htmlspecialchars($username); ?></h2>
-                    <p><?php echo htmlspecialchars($account); ?></p>
+                    <p>Account:<?php echo htmlspecialchars($account); ?></p>
+                    <p>Follower count: <?php echo htmlspecialchars($followers); ?></p>
                     <button class="editUserInfo-btn" onclick="window.location.href='userEditing/index.php'">編輯個人資料</button>
                 </div>
 
