@@ -19,6 +19,8 @@ $postId = $_GET['id'] ?? '';
 		.primary { background: #6c63ff; color: #fff; border: none; padding: 10px 14px; border-radius: 8px; cursor: pointer; }
 		.primary:hover { background: #5851d8; }
 		.secondary { background: transparent; color: #e5e7ff; border: 1px solid #3a3d5c; padding: 10px 14px; border-radius: 8px; cursor: pointer; }
+		.danger { background: #d93025; color: #fff; border: none; padding: 10px 14px; border-radius: 8px; cursor: pointer; }
+		.danger:hover { background: #b02419; }
 		.status { margin-top: 12px; padding: 10px; border-radius: 8px; }
 		.status.success { background: #19351f; color: #b0ffb8; }
 		.status.error { background: #3b1f1f; color: #ffb0b0; }
@@ -66,6 +68,7 @@ $postId = $_GET['id'] ?? '';
 					<div class="actions">
 						<button type="submit" class="primary">更新</button>
 						<button type="button" class="secondary" onclick="location.href='../index.php'">返回列表</button>
+						<button type="button" class="danger" onclick="handleDelete()">刪除貼文</button>
 					</div>
 					<div id="status" class="status" style="display:none;"></div>
 				</form>
@@ -76,8 +79,6 @@ $postId = $_GET['id'] ?? '';
 			<?php include '../../../partials/sidebar_right/index.php'; ?>
 		</div>
 	</div>
-
-	<?php include '../../../partials/footer/index.php'; ?>
 
 	<script>
 		document.addEventListener('DOMContentLoaded', () => {
@@ -161,6 +162,24 @@ $postId = $_GET['id'] ?? '';
 			el.textContent = msg;
 			el.className = 'status ' + (isError ? 'error' : 'success');
 			el.style.display = 'block';
+		}
+
+		async function handleDelete() {
+			if (!confirm('確定要刪除此貼文嗎？此操作無法復原。')) return;
+			const postId = document.getElementById('post_id').value;
+			try {
+				const res = await fetch('../../../../api/deletePostAPI.php', {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify({ post_id: postId })
+				});
+				const data = await res.json();
+				if (data.status !== 'success') throw new Error(data.message || '刪除失敗');
+				showStatus('刪除成功，將返回列表。', false);
+				setTimeout(() => location.href = '../index.php', 1000);
+			} catch (err) {
+				showStatus(err.message, true);
+			}
 		}
 	</script>
 </body>

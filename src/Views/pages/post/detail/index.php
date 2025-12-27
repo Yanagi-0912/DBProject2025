@@ -44,8 +44,6 @@ $postId = $_GET['id'] ?? '';
         </div>
     </div>
 
-    <?php include '../../../partials/footer/index.php'; ?>
-
     <script>
         const postId = "<?php echo htmlspecialchars($postId); ?>";
 

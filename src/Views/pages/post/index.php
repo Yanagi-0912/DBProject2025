@@ -51,8 +51,6 @@ session_start();
 		</div>
 	</div>
 
-	<?php include '../../partials/footer/index.php'; ?>
-
 	<script>
 		document.addEventListener('DOMContentLoaded', () => {
 			loadPosts();
