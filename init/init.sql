@@ -67,13 +67,20 @@ INSERT INTO games (game_title, description, platform, genre, price, image) VALUE
     ('Elden Ring', '開放世界動作 RPG', 'PC / PS5 / Xbox', 'Action RPG', 1790.00, 'https://upload.wikimedia.org/wikipedia/zh/6/62/Elden_Ring_cover.png'),
     ('Genshin Impact', '開放世界動作 RPG', 'Android / iOS / PC', 'Action RPG', 0.00, 'https://upload.wikimedia.org/wikipedia/zh/f/fc/%E5%8E%9F%E7%A5%9E_%E5%9C%8B%E9%9A%9B%E7%89%88.jpeg'),
     ('PUGB: Battlegrounds', '大逃殺射擊遊戲', 'PC / Console / Mobile', 'Battle Royale', 0.00, 'https://cdn1.epicgames.com/spt-assets/53ec4985296b4facbe3a8d8d019afba9/pubg-battlegrounds-16v1j.jpg');
-
+    ('特展硬漢','《特戰硬漢》是一款主打 高強度動作與戰術射擊 的軍事風格遊戲。','PC','Action',0,'https://cmsassets.rgpub.io/sanity/images/dsfx7636/content_organization/731216ff2453134e530feabc9dbd3c44e480e352-1200x625.jpg?accountingTag=VAL');
+    ('植物大戰殭屍','《植物大戰殭屍》是一款結合策略與塔防元素的遊戲，玩家需要利用各種植物來抵禦殭屍的入侵。','PC / Mobile','Strategy / Tower Defense',100,'https://static.wikia.nocookie.net/plantsvszombies/images/0/01/Pvz_logo_stacked_rgb.png/revision/latest?cb=20150520132615');
+    ('Arcaea,','《Arcaea》是一款音樂節奏遊戲，玩家需要跟隨音樂的節奏點擊螢幕上的音符。','Mobile','Rhythm',0,'hhttps://play-lh.googleusercontent.com/6vtKnbt-Rd5y5KIDHUy5adgZAmHBKBMmat0MiRh53qPYr6KqIvgSsYcqAQCsP_CeXXM');
+    ('Geogusser','《Geoguessr》是一款地理知識遊戲，玩家需要根據隨機生成的街景圖像來猜測自己的位置。','Web','Geography / Trivia',0,'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTP-MVMbidvg5KaftAVjHBVNh_62vrEEJ5mgw&s');
+    ('瘟疫公司','《瘟疫公司》是一款策略模擬遊戲，玩家需要設計並控制一種致命的病毒，目標是感染並消滅全球人口。','PC / Mobile','Strategy / Simulation',50,'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQX3kjb_5CElkijzwbOb2xtmlWMZpxIRbzpHA&s');
+    ('貓咪大戰爭','《貓咪大戰爭》是一款結合策略與塔防元素的遊戲，玩家需要利用各種貓咪來抵禦敵人的入侵。','PC / Mobile','Strategy / Tower Defense',0,'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgA9hODOo4NsAAZomJKsMKiT6V0XqSWxHO2w&s');
+    ('Phigros','《Phigros》是一款音樂節奏遊戲，玩家需要跟隨音樂的節奏點擊螢幕上的音符。','PC / Mobile','Rhythm',0,'https://play-lh.googleusercontent.com/IQHEMsqUXxWdPNSFD42NgAGoVf9n3HEMfUQ2rMWj8o1Ioi_UHCYJ9g3TK-jYm2yEzdo');
 -- 貼文（範例：user 1 評論 game 1）
 INSERT INTO posts (user_id, game_id, title, content, rating, image_url, post_date)
 VALUES
     (1, 1, '好玩', '超級神作，劇情超讚', 10, 'images/post1.jpg', '2025-01-18 21:30:00'),
     (2, 5, '還不錯', '越改越爛，唉', 8, 'images/post2.jpg', '2025-02-10 15:45:00');
-
+    (1, 3, 'Elden Ring 評測', '這款遊戲的開放世界設計非常出色，戰鬥系統也很有深度。推薦給喜歡挑戰的玩家！', 9, 'images/post3.jpg', '2025-03-05 10:20:00'),
+    (2, 4, '原神心得', '遊戲畫面精美，角色設計多樣，但抽卡系統讓人有點失望。整體來說還是值得一玩。', 7, 'images/post4.jpg', '2025-04-12 18:55:00');
 --建立procedure：依使用者 ID 取得貼文列表
 DELIMITER $$
 CREATE PROCEDURE getpostByUserId(IN userId INT)
