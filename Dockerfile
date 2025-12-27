@@ -26,9 +26,14 @@ RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
 COPY docker/php/conf.d/zz-opcache.ini /usr/local/etc/php/conf.d/zz-opcache.ini
 COPY docker/php/conf.d/zz-custom.ini /usr/local/etc/php/conf.d/zz-custom.ini
 
+# Apache configuration
+COPY docker/apache/conf.d/app.conf /etc/apache2/conf-available/app.conf
+
 # Enable useful Apache modules and allow .htaccess overrides
 RUN a2enmod rewrite headers \
-    && sed -ri 's/AllowOverride\s+None/AllowOverride All/g' /etc/apache2/apache2.conf
+    && a2enconf app \
+    && sed -ri 's/AllowOverride\s+None/AllowOverride All/g' /etc/apache2/apache2.conf \
+    && sed -ri 's/<Directory \/var\/www\/html>/<Directory \/var\/www\/html>\n    Options -MultiViews -Indexes/g' /etc/apache2/apache2.conf
 
 # Set working directory
 WORKDIR /var/www/html
