@@ -18,7 +18,8 @@
                     <circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="2"/>
                     <path d="M12.5 12.5L17 17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                 </svg>
-                <input type="text" class="search-input" placeholder="搜尋遊戲、貼文或玩家...">
+                <input type="text" class="search-input" id="search-input" placeholder="搜尋遊戲、貼文或玩家...">
+                <div class="search-results" id="search-results"></div>
             </div>
         </div>
 
@@ -55,10 +56,13 @@
 
 
 <script>
+let searchTimeout;
+const searchInput = document.getElementById('search-input');
+const searchResults = document.getElementById('search-results');
+
 document.addEventListener('DOMContentLoaded', function() {
     // Settings button click handler
     document.getElementById('settings-btn')?.addEventListener('click', function() {
-        // TODO: Open settings modal or navigate to settings page
         console.log('Settings clicked');
     });
 
@@ -71,16 +75,131 @@ document.addEventListener('DOMContentLoaded', function() {
         window.location.href = '/Views/pages/login/index.php';
     });
 
-    // Search functionality
-    const searchInput = document.querySelector('.search-input');
-    searchInput?.addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') {
-            const query = this.value.trim();
-            if (query) {
-                // TODO: Implement search functionality
-                console.log('Searching for:', query);
-            }
+    // Search functionality with debounce
+    searchInput?.addEventListener('input', function() {
+        const query = this.value.trim();
+        
+        clearTimeout(searchTimeout);
+        
+        if (query.length < 2) {
+            hideSearchResults();
+            return;
+        }
+        
+        searchTimeout = setTimeout(() => {
+            performSearch(query);
+        }, 300);
+    });
+
+    // Hide search results when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.search-container')) {
+            hideSearchResults();
+        }
+    });
+
+    // Show results when focusing on search input with existing query
+    searchInput?.addEventListener('focus', function() {
+        const query = this.value.trim();
+        if (query.length >= 2 && searchResults.innerHTML) {
+            searchResults.style.display = 'block';
         }
     });
 });
+
+async function performSearch(query) {
+    try {
+        const res = await fetch(`/api/searchAPI.php?q=${encodeURIComponent(query)}`);
+        const data = await res.json();
+        
+        if (data.status === 'success') {
+            displaySearchResults(data.data);
+        } else {
+            hideSearchResults();
+        }
+    } catch (err) {
+        console.error('Search failed:', err);
+        hideSearchResults();
+    }
+}
+
+function displaySearchResults(results) {
+    const { games, posts, users } = results;
+    const hasResults = games.length > 0 || posts.length > 0 || users.length > 0;
+    
+    if (!hasResults) {
+        searchResults.innerHTML = '<div class="no-results">找不到相關結果</div>';
+        searchResults.style.display = 'block';
+        return;
+    }
+    
+    let html = '';
+    
+    // 顯示遊戲結果
+    if (games.length > 0) {
+        html += '<div class="result-section">';
+        html += '<div class="result-header">遊戲</div>';
+        games.forEach(game => {
+            html += `
+                <a href="/Views/pages/game/index.php?id=${game.game_id}" class="result-item">
+                    <div class="result-icon">🎮</div>
+                    <div class="result-content">
+                        <div class="result-title">${escapeHtml(game.game_title)}</div>
+                        ${game.description ? `<div class="result-desc">${escapeHtml(game.description.substring(0, 50))}...</div>` : ''}
+                    </div>
+                </a>
+            `;
+        });
+        html += '</div>';
+    }
+    
+    // 顯示貼文結果
+    if (posts.length > 0) {
+        html += '<div class="result-section">';
+        html += '<div class="result-header">貼文</div>';
+        posts.forEach(post => {
+            html += `
+                <a href="/Views/pages/post/detail/index.php?id=${post.post_id}" class="result-item">
+                    <div class="result-icon">📝</div>
+                    <div class="result-content">
+                        <div class="result-title">${escapeHtml(post.title)}</div>
+                        <div class="result-meta">${post.username || '匿名'} · ${post.game_title || '未分類'}</div>
+                    </div>
+                </a>
+            `;
+        });
+        html += '</div>';
+    }
+    
+    // 顯示用戶結果
+    if (users.length > 0) {
+        html += '<div class="result-section">';
+        html += '<div class="result-header">玩家</div>';
+        users.forEach(user => {
+            html += `
+                <a href="/Views/pages/userProfile/index.php?id=${user.user_id}" class="result-item">
+                    <div class="result-icon">👤</div>
+                    <div class="result-content">
+                        <div class="result-title">${escapeHtml(user.username)}</div>
+                        ${user.account ? `<div class="result-desc">@${escapeHtml(user.account)}</div>` : ''}
+                    </div>
+                </a>
+            `;
+        });
+        html += '</div>';
+    }
+    
+    searchResults.innerHTML = html;
+    searchResults.style.display = 'block';
+}
+
+function hideSearchResults() {
+    searchResults.style.display = 'none';
+}
+
+function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+}
 </script>
