@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <title>註冊</title>
-    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="loginPage.css">
 </head>
 <body>
 
