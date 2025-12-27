@@ -1,29 +1,16 @@
 services:
   - type: web
-    name: GameHub
+    name: gamehub-app
     env: docker
-    repo: your-github-repo-url
-    build:
-      dockerfilePath: ./Dockerfile
+    dockerfilePath: ./Dockerfile
     envVars:
-      - key: PORT
-        value: 10000
       - key: DB_HOST
-        value: your-db-host.c.neon.tech
+        # 改為你的資料庫主機 (e.g., railway.internal, localhost)
+        value: localhost
       - key: DB_NAME
-        fromDatabase:
-          name: neon
-          property: database
+        value: dbproject
       - key: DB_USER
-        fromDatabase:
-          name: neon
-          property: user
+        value: dbuser
       - key: DB_PASSWORD
-        fromDatabase:
-          name: neon
-          property: password
-
-databases:
-  - name: neon
-    engine: postgres  # 或 mysql (若使用 clearDB)
-    ipAllowList: []
+        # 強烈建議在 Render Dashboard 中設為 Secret
+        value: password
