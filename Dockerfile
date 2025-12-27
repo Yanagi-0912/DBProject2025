@@ -4,17 +4,19 @@ FROM php:8.2.4-apache
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
        libpng-dev \
-       libjpeg-dev \
+       libjpeg62-turbo-dev \
        libfreetype6-dev \
        libzip-dev \
        zlib1g-dev \
        unzip \
        curl \
+       pkg-config \
     && rm -rf /var/lib/apt/lists/*
 
-# Configure and install PHP extensions (in correct order)
-RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install -j$(nproc) pdo_mysql mysqli gd zip mbstring opcache
+# Configure and install PHP extensions - install core first, then GD
+RUN docker-php-ext-install -j$(nproc) pdo_mysql mysqli mbstring opcache zip \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install -j$(nproc) gd
 
 # PHP recommended settings
 COPY docker/php/conf.d/zz-opcache.ini /usr/local/etc/php/conf.d/zz-opcache.ini
@@ -38,4 +40,20 @@ COPY ./src /var/www/html/
 # Set proper permissions
 RUN chown -R www-data:www-data /var/www/html
 
-EXPOSE 80
+# Set environment variables
+ENV APACHE_RUN_USER=www-data \
+    APACHE_RUN_GROUP=www-data \
+    APACHE_LOG_DIR=/var/log/apache2 \
+    APACHE_PID_FILE=/var/run/apache2.pid \
+    APACHE_RUN_DIR=/var/run/apache2 \
+    APACHE_LOCK_DIR=/var/lock/apache2
+
+# Enable Apache MPM module and set up for dynamic port
+RUN a2dismod mpm_prefork && a2enmod mpm_worker
+
+# Update Apache to listen on PORT environment variable
+RUN echo 'Listen ${PORT:-80}' > /etc/apache2/ports.conf
+
+EXPOSE ${PORT:-80}
+
+CMD ["apache2-foreground"]

@@ -1,0 +1,29 @@
+services:
+  - type: web
+    name: GameHub
+    env: docker
+    repo: your-github-repo-url
+    build:
+      dockerfilePath: ./Dockerfile
+    envVars:
+      - key: PORT
+        value: 10000
+      - key: DB_HOST
+        value: your-db-host.c.neon.tech
+      - key: DB_NAME
+        fromDatabase:
+          name: neon
+          property: database
+      - key: DB_USER
+        fromDatabase:
+          name: neon
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: neon
+          property: password
+
+databases:
+  - name: neon
+    engine: postgres  # 或 mysql (若使用 clearDB)
+    ipAllowList: []
