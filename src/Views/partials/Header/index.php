@@ -141,7 +141,7 @@ function displaySearchResults(results) {
         html += '<div class="result-header">遊戲</div>';
         games.forEach(game => {
             html += `
-                <a href="/Views/pages/game/index.php?id=${game.game_id}" class="result-item">
+                <a href="/Views/pages/game/index.php?game=${game.game_title}" class="result-item">
                     <div class="result-icon">🎮</div>
                     <div class="result-content">
                         <div class="result-title">${escapeHtml(game.game_title)}</div>
