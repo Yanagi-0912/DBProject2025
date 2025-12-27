@@ -55,6 +55,48 @@
     filter: drop-shadow(0 0 5px rgba(0, 242, 234, 0.5));
 }
 
+.header-center {
+    flex: 1;
+    max-width: 500px; /* 限制搜尋框最大寬度 */
+    margin: 0 20px;
+}
+
+.search-container {
+    position: relative;
+    width: 100%;
+}
+
+.search-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    pointer-events: none;
+}
+
+.search-input {
+    width: 100%;
+    padding: 10px 10px 10px 40px; /* 左邊留空給 icon */
+    background-color: #1f202e;
+    border: 1px solid #2d2d44;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    box-sizing: border-box; /* 確保 padding 不會撐大寬度 */
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: var(--esport-primary);
+    background-color: #252636;
+    box-shadow: 0 0 15px rgba(0, 242, 234, 0.15);
+}
+
+.search-input::placeholder {
+    color: #5d5e75;
+}
 
 /* 右側按鈕群 */
 .header-right {
