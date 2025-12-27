@@ -1,11 +1,11 @@
-<?php//將init.sql內插入的user的密碼hash
-include_once 'connection.php';
+<?php
+//將init.sql內插入的user的密碼hash
+require_once 'connection.php';
 
 try{
     $stmt = $db->prepare("SELECT *  FROM users ");
     $stmt->execute();
     $user = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
     if(!$user){
         http_response_code(401);
         echo json_encode([
