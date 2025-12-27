@@ -7,13 +7,14 @@ RUN apt-get update \
        libjpeg-dev \
        libfreetype6-dev \
        libzip-dev \
+       zlib1g-dev \
        unzip \
        curl \
     && rm -rf /var/lib/apt/lists/*
 
-# Configure and install PHP extensions
+# Configure and install PHP extensions (in correct order)
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install -j$(nproc) pdo pdo_mysql mysqli gd zip mbstring opcache
+    && docker-php-ext-install -j$(nproc) pdo_mysql mysqli gd zip mbstring opcache
 
 # PHP recommended settings
 COPY docker/php/conf.d/zz-opcache.ini /usr/local/etc/php/conf.d/zz-opcache.ini
