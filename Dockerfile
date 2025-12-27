@@ -13,14 +13,7 @@ RUN apt-get update \
 
 # Configure and install PHP extensions
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install -j$(nproc) \
-       pdo \
-       pdo_mysql \
-       mysqli \
-       gd \
-       zip \
-       mbstring \
-       opcache
+    && docker-php-ext-install -j$(nproc) pdo pdo_mysql mysqli gd zip mbstring opcache
 
 # PHP recommended settings
 COPY docker/php/conf.d/zz-opcache.ini /usr/local/etc/php/conf.d/zz-opcache.ini
