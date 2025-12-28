@@ -74,7 +74,9 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('login-btn')?.addEventListener('click', function() {
         window.location.href = '/Views/pages/login/index.php';
     });
-
+    document.getElementById('settings-btn')?.addEventListener('click', function() {
+        window.location.href = '/Views/pages/settings/index.php';
+    });
     // Search functionality with debounce
     searchInput?.addEventListener('input', function() {
         const query = this.value.trim();
